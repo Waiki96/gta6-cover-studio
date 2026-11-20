@@ -3,20 +3,72 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cover Snap</title>
+<title>Vice City Panels — GTA 6 style cover maker</title>
 <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 <main class="app">
-  <section class="controls">
-    <h1>Cover Snap</h1>
-    <p>A photo and a caption, made into a square cover.</p>
-    <label>Photo <input id="photo" type="file" accept="image/*"></label>
-    <label>Caption <input id="caption" type="text" maxlength="40" value="Sunset Heist"></label>
-    <button id="export" type="button">Export PNG 1080 x 1080</button>
-    <p id="status" role="status"></p>
+  <section class="controls" aria-label="Cover controls">
+    <h1>Vice City Panels</h1>
+    <p class="tagline">Your photo, your words — a multi-panel cover in the style of a Vice City poster. Everything runs in this browser; photos never leave your machine.</p>
+
+    <h2>Layout</h2>
+    <div id="layout-row" class="chips" role="group" aria-label="Panel layout"></div>
+
+    <h2>Photos</h2>
+    <label class="check"><input id="one-photo" type="checkbox"> One photo across all panels</label>
+    <div id="photo-slots"></div>
+
+    <h2>Crop the selected panel</h2>
+    <label>Panel
+      <select id="panel-picker"></select>
+    </label>
+    <p class="hint">Tip: click a panel in the preview to select it.</p>
+    <label>Zoom <span id="zoom-val" class="val">100%</span>
+      <input id="zoom" type="range" min="1" max="3" step="0.05" value="1">
+    </label>
+    <label>Move left / right <span id="pan-x-val" class="val">0</span>
+      <input id="pan-x" type="range" min="-0.5" max="0.5" step="0.01" value="0">
+    </label>
+    <label>Move up / down <span id="pan-y-val" class="val">0</span>
+      <input id="pan-y" type="range" min="-0.5" max="0.5" step="0.01" value="0">
+    </label>
+
+    <h2>Caption</h2>
+    <label>Main title
+      <input id="title" type="text" maxlength="40" value="Sunset Heist">
+    </label>
+    <label>Subline
+      <input id="subline" type="text" maxlength="60" value="A Vice City story">
+    </label>
+    <label>Title position
+      <select id="title-pos">
+        <option value="bottom" selected>Bottom</option>
+        <option value="top">Top</option>
+      </select>
+    </label>
+
+    <h2>Colour grade</h2>
+    <div id="grade-row" class="chips" role="group" aria-label="Colour grade"></div>
+
+    <h2>Export</h2>
+    <label>Preview size
+      <select id="preview-size">
+        <option value="1080x1080" selected>Square 1080 x 1080</option>
+        <option value="1080x1350">Portrait 1080 x 1350</option>
+        <option value="1920x1080">Wide 1920 x 1080</option>
+      </select>
+    </label>
+    <div class="exports">
+      <button type="button" data-export="1080x1080">PNG 1080 x 1080</button>
+      <button type="button" data-export="1080x1350">PNG 1080 x 1350</button>
+      <button type="button" data-export="1920x1080">PNG 1920 x 1080</button>
+    </div>
+    <p id="status" role="status">Pick a photo to begin — or try a sample below each panel.</p>
   </section>
-  <canvas id="cover" width="1080" height="1080" aria-label="The cover"></canvas>
+  <section class="stage" aria-label="Cover preview">
+    <canvas id="cover" width="960" height="960"></canvas>
+  </section>
 </main>
 <script type="module" src="./src/main.js"></script>
 </body>

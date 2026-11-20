@@ -1,12 +1,53 @@
-html, body { margin: 0; height: 100%; background: #f2f0f4; color: #1d1b22; font: 15px/1.4 system-ui, sans-serif; }
-.app { display: flex; gap: 32px; align-items: center; justify-content: center; height: 100%; padding: 24px; box-sizing: border-box; }
-.controls { display: flex; flex-direction: column; gap: 14px; width: 280px; }
-.controls h1 { margin: 0; font-size: 28px; }
-.controls p { margin: 0; color: #5c5866; }
+/* Vice City Panels — neon dusk theme. The editor is dark so the bright cover
+   preview stands out; the cover itself is drawn on canvas, not styled here. */
+:root {
+  --ink: #f5f0fa;
+  --muted: #b9aec9;
+  --panel: #1a1226;
+  --panel-2: #241832;
+  --line: #3a2b52;
+  --accent: #ff2e88;
+  --accent-2: #00e5ff;
+}
+html, body { margin: 0; min-height: 100%; background: #120a1e; color: var(--ink); font: 15px/1.45 system-ui, sans-serif; }
+.app { display: flex; gap: 28px; align-items: flex-start; justify-content: center; padding: 24px; box-sizing: border-box; }
+.controls { width: 320px; flex: none; display: flex; flex-direction: column; gap: 12px; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+.controls h1 { margin: 0; font-size: 26px; letter-spacing: 0.5px; }
+.controls h1::after { content: ""; display: block; height: 3px; margin-top: 8px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); border-radius: 2px; }
+.controls h2 { margin: 10px 0 0; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); }
+.tagline { margin: 0; color: var(--muted); }
+.hint { margin: -6px 0 0; font-size: 13px; color: var(--muted); }
 label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; }
-input[type=text] { font: inherit; padding: 8px; border: 1px solid #c9c4d1; border-radius: 6px; }
-button { font: inherit; font-weight: 700; padding: 10px; border: 0; border-radius: 6px; background: #1d1b22; color: #fff; cursor: pointer; }
-canvas { width: min(70vh, 60vw); height: min(70vh, 60vw); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); }
+label.check { flex-direction: row; align-items: center; gap: 8px; font-weight: 500; }
+.val { float: right; color: var(--accent-2); font-weight: 700; }
+input[type=text], select { font: inherit; color: var(--ink); background: var(--panel-2); padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; }
+input[type=range] { width: 100%; accent-color: var(--accent); }
+button { font: inherit; font-weight: 700; padding: 10px 12px; border: 0; border-radius: 8px; background: #2c1e42; color: var(--ink); cursor: pointer; }
+button:hover { background: #3a2760; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { padding: 7px 11px; font-weight: 600; }
+.chip.active { background: var(--accent); color: #fff; }
+.exports { display: flex; flex-direction: column; gap: 8px; }
+.exports button { background: var(--accent); color: #fff; }
+.exports button:hover { background: #ff4d9c; }
+#status { margin: 4px 0 0; color: var(--muted); font-size: 13px; min-height: 19px; }
+.slot { display: flex; align-items: center; gap: 8px; background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; }
+.slot + .slot { margin-top: 8px; }
+.slot-name { font-weight: 700; width: 52px; flex: none; }
+.file-label { flex-direction: row; align-items: center; gap: 6px; font-weight: 600; cursor: pointer; color: var(--accent-2); white-space: nowrap; }
+.file-label input[type=file] { display: none; }
+.sample-links { margin-left: auto; display: flex; gap: 6px; }
+.sample-links button { padding: 5px 9px; font-size: 13px; }
+.stage { flex: 1; display: flex; justify-content: center; position: sticky; top: 24px; }
+canvas { max-width: min(72vh, 62vw); max-height: 88vh; width: auto; height: auto; box-shadow: 0 12px 44px rgba(0, 0, 0, 0.55); border-radius: 4px; }
+/* Screenshot scenes: cover-only hides the editor and fills the frame. */
 body.shot-cover .controls { display: none; }
 body.shot-cover .app { padding: 0; }
-body.shot-cover canvas { width: 100vw; height: 100vh; box-shadow: none; }
+body.shot-cover .stage { position: static; }
+body.shot-cover canvas { max-width: none; max-height: none; width: 100vw; height: 100vh; box-shadow: none; border-radius: 0; }
+@media (max-width: 900px) {
+  .app { flex-direction: column; }
+  .controls { width: auto; }
+  .stage { position: static; width: 100%; }
+  canvas { max-width: 100%; }
+}

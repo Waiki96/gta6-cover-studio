@@ -1,5 +1,1 @@
-[
-  { "name": "1-cover.jpg", "query": "?shot=cover&photo=pier&caption=Sunset%20Heist", "w": 1080, "h": 1080 },
-  { "name": "2-editor.jpg", "query": "?shot=editor&photo=boulevard&caption=Boulevard%20Queen", "w": 1280, "h": 720 },
-  { "name": "3-cover.jpg", "query": "?shot=cover&photo=boulevard&caption=Boulevard%20Queen", "w": 1080, "h": 1080 }
-]
+[{"h":1080,"kind":"export","name":"1-cover.jpg","query":"?shot=export&layout=hero2&photo=pier&photo2=boulevard&grade=sunset&caption=Sunset%20Heist&subline=A%20Vice%20City%20story&w=1080&h=1080","w":1080},{"h":900,"kind":"page","name":"2-editor.jpg","query":"?shot=editor&layout=hero2&photo=boulevard&photo2=pier&grade=neon&caption=Boulevard%20Queen&subline=Vice%20City%20after%20dark","w":1280},{"h":1350,"kind":"export","name":"3-cover.jpg","query":"?shot=export&layout=quad&photo=pier&photo2=boulevard&photo3=boulevard&photo4=pier&grade=neon&caption=Neon%20Nights&subline=Four%20corners%20of%20the%20city&w=1080&h=1350","w":1080},{"h":900,"kind":"page","name":"4-panels.jpg","query":"?shot=editor&layout=quad&photo=pier&photo2=boulevard&photo3=boulevard&photo4=pier&grade=dusk&caption=Four%20Corners&subline=One%20night%2C%20four%20stories","w":1280}]
